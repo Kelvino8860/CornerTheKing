@@ -98,24 +98,28 @@ public class CornerTheKing extends JFrame implements MouseListener{
           int[] currentPosition2 = {8,9,10,11,12,13,14,15};
           int win = 0;
 
+          //Move zero position up
+          //instead move leftwards
           for(i = 0; i < currentPosition.length; ++i)
           {
-            if(panelSelect == array[i])
+            if(panelSelect == array[currentPosition[i]])
             {
                 steps = 0;
                 break;
             }
           }
 
+          //Move only one position upwards
           for(i = 0; i < currentPosition2.length; ++i)
           {
-            if(panelSelect == array[i])
+            if(panelSelect == array[currentPosition2[i]])
             {
                 steps = 1;
                 break;
             }
           }
 
+          //If steps == 0, then call a different dirrection
           if(steps == 0)
           {
               moveLeft(array, panelSelect, indexSelectPanel);
@@ -178,24 +182,25 @@ public class CornerTheKing extends JFrame implements MouseListener{
         else
         if(steps == 1)
         {
-            win = indexSelectPanel + 1;
             array[indexSelectPanel + 1].add(label);
             invalidate();
             repaint();
+            win = indexSelectPanel + 1;
         }
         else
         if(steps == 2)
         {
-            win = indexSelectPanel + 1;
             array[indexSelectPanel + 2].add(label);
             invalidate();
             repaint();
+            win = indexSelectPanel + 2;
         }
 
         //Display Winner
         if(win == 7)
         {
             winningComp();
+            System.exit(1);
         }
     }
 
